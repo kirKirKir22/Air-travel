@@ -9,6 +9,7 @@ public class FlightBuilder {
 
     static List<Flight> createFlights() {
         LocalDateTime threeDaysFromNow = LocalDateTime.now().plusDays(3);
+
         return Arrays.asList(
                 //A normal flight with two hour duration
                 createFlight(threeDaysFromNow, threeDaysFromNow.plusHours(2)),
