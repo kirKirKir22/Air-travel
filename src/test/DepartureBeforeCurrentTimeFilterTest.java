@@ -1,8 +1,8 @@
 package test;
 
-import com.gridnine.testing.DepartureBeforeCurrentTimeFilter;
-import com.gridnine.testing.Flight;
-import com.gridnine.testing.Segment;
+import com.gridnine.testing.filter.DepartureBeforeCurrentTimeFilter;
+import com.gridnine.testing.flight.Flight;
+import com.gridnine.testing.flight.Segment;
 import org.junit.jupiter.api.Test;
 
 

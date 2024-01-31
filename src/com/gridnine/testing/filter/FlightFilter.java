@@ -1,8 +1,8 @@
-package com.gridnine.testing;
+package com.gridnine.testing.filter;
+
+import com.gridnine.testing.flight.Flight;
 
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 public interface FlightFilter {
 
