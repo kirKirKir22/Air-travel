@@ -8,9 +8,12 @@ public interface FlightFilter {
 
     List<Flight> filterFlights(List<Flight> flights);
 
-    default FlightFilter combine(Predicate<Flight> predicate) {
-        return flights -> flights.stream().filter(predicate).collect(Collectors.toList());
+    default FlightFilter combine(FlightFilter other) {
+        return flights -> {
+            List<Flight> filteredFlights = this.filterFlights(flights);
+            return other.filterFlights(filteredFlights);
+        };
+
+
     }
-
-
 }
