@@ -8,7 +8,6 @@ public class Main {
 
         List<Flight> flights = FlightBuilder.createFlights();
 
-
         DepartureBeforeCurrentTimeFilter departureFilter = new DepartureBeforeCurrentTimeFilter();
         ArrivalBeforeDepartureFilter arrivalFilter = new ArrivalBeforeDepartureFilter();
         GroundTimeExceedsTwoHoursFilter groundTimeFilter = new GroundTimeExceedsTwoHoursFilter();

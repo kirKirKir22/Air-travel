@@ -1,27 +1,27 @@
 package com.gridnine.testing;
 
 import java.time.Duration;
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class GroundTimeExceedsTwoHoursFilter implements FlightFilter {
+
     @Override
     public List<Flight> filterFlights(List<Flight> flights) {
+        Predicate<Flight> groundTimeExceedsTwoHoursPredicate = flight -> calculateTotalGroundTime(flight).compareTo(Duration.ofHours(2)) <= 0;
 
         return flights.stream()
-                .filter(flight -> {
-                    List<Segment> segments = flight.getSegments();
-                    for (int i = 0; i < segments.size() - 1; i++) {
-                        LocalDateTime currentArrival = segments.get(i).getArrivalDate();
-                        LocalDateTime nextDeparture = segments.get(i + 1).getDepartureDate();
-                        if (Duration.between(currentArrival, nextDeparture).toHours() > 2) {
-                            return false;
-                        }
-                    }
-                    return true;
-                })
+                .filter(groundTimeExceedsTwoHoursPredicate)
                 .collect(Collectors.toList());
     }
 
+    private Duration calculateTotalGroundTime(Flight flight) {
+        List<Segment> segments = flight.getSegments();
+        long totalGroundTime = 0;
+        for (int i = 0; i < segments.size() - 1; i++) {
+            totalGroundTime += Duration.between(segments.get(i).getArrivalDate(), segments.get(i + 1).getDepartureDate()).toHours();
+        }
+        return Duration.ofHours(totalGroundTime);
+    }
 }
