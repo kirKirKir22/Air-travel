@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-class GroundTimeExceedsTwoHoursFilter implements FlightFilter {
+public class GroundTimeExceedsTwoHoursFilter implements FlightFilter {
     @Override
     public List<Flight> filterFlights(List<Flight> flights) {
 
